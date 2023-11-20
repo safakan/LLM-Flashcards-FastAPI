@@ -35,56 +35,54 @@ OR
 
 
 ## 1.3 Understanding the Codebase
-The app runs from the single file main.py in the root directory, the rest in the diagram below are sub-directories of the repository. Modularized codebase aims to provide clear links within the application. Read the each section below to understand it in depth.
+The application is primarily driven by main.py located in the root directory. The diagram below illustrates the repository's sub-directory structure. The modularized codebase is designed for clarity and ease of navigation. For a detailed understanding, please refer to the descriptions of each section below.
 
 ![Codebase](docs/images/understanding_codebase.png)
 
-###  root (directory)
-- main.py, readme.md, requirements.txt, test.db, LICENSE, git and docker files
-- ./main.py (app)
- - Runs the app itself.
-  - The environment variables are loaded.
-  - Ensures the database schema is prepared before the application starts serving requests.
-  - Adds all the routes and endpoints defined in routes(web.py) to the main application.
-  - Mounts a directory to serve static files in a FastAPI application
+### Root Directory (APP)
+The root directory contains essential files for the application's operation:
+- `main.py`: The entry point of the application. It performs several critical functions:
+  - Initializes and loads environment variables.
+  - Prepares the database schema before the application starts serving requests.
+  - Incorporates all routes and endpoints from `routes/web.py`.
+  - Mounts a directory to serve static files.
+- `readme.md`: Provides an overview and documentation for the project.
+- `requirements.txt`: Lists all the Python dependencies.
+- `test.db`: A sample database file used for testing.
+- `LICENSE`: The license file for the project.
+- Various configuration files for Git and Docker.
 
 
-### templates (directory)
-- Has the template html templates to be served e.g index.html
+### Templates Directory
+- Contains HTML templates used by the application, such as `index.html`.
 
-### static (directory)
-- Has two sub-directories to handle static file serving
- - js - has independent javascript modules to be used.
- - styles - has independent css modules for styling.
+### Static Directory
+- Manages static assets, divided into two sub-directories:
+  - `js/`: Contains independent JavaScript modules.
+  - `styles/`: Houses CSS modules for styling.
 
-### routes (directory)
-- Main place to handle endpoints. Currently there's only a single file:
- - web.py has the router set up with all endpoints and the jinja templates
-
-### database (directory)
-- database/models.py
- - contains all the data models
-
-- database/database.py
- - connection to the database
-
-- database/query_database.py
- - Database Query CLI Tool to query the database.
-  - python .\query_database.py --query "Select * from users"
-  - python .\query_database.py --file .\query.sql
+### Routes Directory
+- Central location for handling API endpoints:
+  - `web.py`: Sets up the router with all endpoints and integrates Jinja templates.
 
 
-### auth (directory)
-- auth/authentication.py
- - Handles password and user verification / hashing
+### Database Directory
+- Manages database interactions and models:
+  - `models.py`: Defines data models.
+  - `database.py`: Handles the database connection.
+  - `query_database.py`: A Database Query CLI Tool for querying the database.
+    - Usage: `python .\query_database.py --query "Select * from users"`
+    - Or: `python .\query_database.py --file .\query.sql`
 
-### chains (directory)
-- chains/create_deck_from_input.py
- - Handles LLM chain to generate a deck from a text input in JSON format to be processed later on.
+### Auth Directory
+- `authentication.py`: Manages user authentication, including password hashing and verification.
 
-### objects (directory)
-- A directory to store abstract objects that will have complex utilities in the app.
- - currently there's only active_deck.py
+### Chains Directory
+- `create_deck_from_input.py`: Utilizes LLM chains to generate flashcard decks from text inputs, converting them into a JSON format for processing.
 
-### docs (directory)
-- Anything related to documentation will be stored here.
+### Objects Directory
+- Stores abstract objects with complex utilities for the application:
+  - Currently includes `active_deck.py`.
+
+### Docs Directory
+- A dedicated space for all documentation-related materials.
