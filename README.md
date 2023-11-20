@@ -35,31 +35,56 @@ OR
 
 
 ## 1.3 Understanding the Codebase
-The app runs from the single file main.py in the root directory, the rest in the diagram below are sub-directories of the repository. Modularized codebase aims to provide clear links within the application.
+The app runs from the single file main.py in the root directory, the rest in the diagram below are sub-directories of the repository. Modularized codebase aims to provide clear links within the application. Read the each section below to understand it in depth.
+
 ![Codebase](docs/images/understanding_codebase.png)
 
-### main.py
-- Runs the app itself.
-- - The environment variables are loaded.
-- - Ensures the database schema is prepared before the application starts serving requests.
-- - Adds all the routes and endpoints defined in routes(web.py) to the main application.
-- - Mounts a directory to serve static files in a FastAPI application
+###  root (directory)
+- main.py, readme.md, requirements.txt, test.db, LICENSE, git and docker files
+- ./main.py (app)
+ - Runs the app itself.
+  - The environment variables are loaded.
+  - Ensures the database schema is prepared before the application starts serving requests.
+  - Adds all the routes and endpoints defined in routes(web.py) to the main application.
+  - Mounts a directory to serve static files in a FastAPI application
 
-### templates
-- has the template html files
 
-### static
-- has the static files to be served
+### templates (directory)
+- Has the template html templates to be served e.g index.html
 
-routes/web.py
-- has the router set up and the jinja templates
-- all routes are defined here
+### static (directory)
+- Has two sub-directories to handle static file serving
+ - js - has independent javascript modules to be used.
+ - styles - has independent css modules for styling.
 
-database/models.py
-- contains all the data models
+### routes (directory)
+- Main place to handle endpoints. Currently there's only a single file:
+ - web.py has the router set up with all endpoints and the jinja templates
 
-database/database.py
-- connection to the database
+### database (directory)
+- database/models.py
+ - contains all the data models
 
-auth/authentication.py
-- handles password and user verification / hashing
+- database/database.py
+ - connection to the database
+
+- database/query_database.py
+ - Database Query CLI Tool to query the database.
+  - python .\query_database.py --query "Select * from users"
+  - python .\query_database.py --file .\query.sql
+
+
+### auth (directory)
+- auth/authentication.py
+ - Handles password and user verification / hashing
+
+### chains (directory)
+- chains/create_deck_from_input.py
+ - Handles LLM chain to generate a deck from a text input in JSON format to be processed later on.
+
+### objects (directory)
+- A directory to store abstract objects that will have complex utilities in the app.
+ - currently there's only active_deck.py
+
+### docs (directory)
+- Anything related to documentation will be stored here.
