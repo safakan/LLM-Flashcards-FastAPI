@@ -1,6 +1,7 @@
 # LLM FLASHCARDS APP 
-- An app to generate custom flashcard decks and practice. Challenge your creativity to stir away from mainstream way of using flashcards.
-- Front-end agnostic FastAPI app benefiting from Langchain for LLM chains and vanilla HTML/JS/CSS for front-end.
+An app to generate custom flashcard decks and practice. Challenge your creativity to stir away from mainstream way of using flashcards.
+
+Front-end agnostic FastAPI app benefiting from Langchain for LLM chains and vanilla HTML/JS/CSS for front-end.
 
 **Readme Contents**
 - 1.0 Stack
