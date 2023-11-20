@@ -1,5 +1,37 @@
+# LLM FLASHCARDS APP 
+- An app to generate custom flashcard decks and practice. Challenge your creativity to stir away from mainstream way of using flashcards.
+- Front-end agnostic FastAPI app benefiting from Langchain for LLM chains and vanilla HTML/JS/CSS for front-end.
 
-## Understanding the Codebase
+**Readme Contents**
+- 1.0 Stack
+- 1.1 Installation
+- 1.2 Usage
+- 1.3 Understanding the Codebase
+
+## 1.0 Stack
+- Python, SQL, Javascript, HTML, CSS
+- FastAPI, langchain, uvicorn, fastapi, passlib, Jinja2, python-multipart, python-dotenv, openai, bcrypt
+
+## 1.1 Installation
+1. Clone the repository: `git clone https://github.com/Safakan/TalkWithYourFiles.git` or by using the GitHub Desktop app.
+2. Install the required dependencies: `pip install -r requirements.txt` (ideally in a virtual environment)
+
+OR
+1. Create a docker container using the Dockerfile.
+
+
+## 1.2 Usage
+1. Make sure you're in the root directory and have a .env file with your "OPENAI_API_KEY" set to your private key.
+ - just make sure the api key is set in the environment.
+2. Run the application: `uvicorn main:app --reload`
+3. Wait for the application to run on your browser.
+4. Register/Login to use.
+5. Give AI a prompt to generate you a deck of cards.
+ - AI is accustomed to generate you a deck of cards, just give it a context and tell what you want.
+
+
+
+## 1.3 Understanding the Codebase
 ![Codebase](docs/images/understanding_codebase.png)
 
 main.py
@@ -23,46 +55,3 @@ database/database.py
 
 auth/authentication.py
 - handles password and user verification / hashing
-
-
-
------- sort:
-- LLM logic
-
-What Happens During User Login:
-The user enters their credentials into the frontend form.
-JavaScript (AJAX) captures these credentials and sends a POST request to the /login route.
-The /login route verifies the credentials against the database.
-If the credentials are correct, the user is logged in, and a session/cookie is set.
-Basic yet complete user authentication flow.
-
-
-
-langchain, uvicorn, fastapi, passlib, Jinja2, python-multipart, python-dotenv, openai, bcrypt
-
-
-
-
-
-
-
-
-
-
-
-------- active deck fix
-The persistent presence of the deck across page reloads or sessions might be due to the way the ActiveDeck singleton is implemented in your application. The singleton pattern ensures that only one instance of a class exists during the application's lifecycle. In a server environment like FastAPI, this can mean the ActiveDeck instance remains active and retains its state as long as the server is running.
-
-To manage this and control when the deck should be available, you could consider the following approaches:
-
-Session-Based Deck Management: Instead of using a singleton pattern for the deck, you could store deck information in user sessions. This way, each user would have their own deck that persists only for their session.
-
-Reset Deck on Logout/Login: Provide functionality to reset or clear the ActiveDeck instance when a user logs out, or when a new session starts. This would ensure that a new user starting a session does not see a previous user's deck.
-
-Database Storage: Store deck information in a database linked to a user account. Whenever a user logs in, their deck is loaded from the database. This approach is more complex but allows for persistent, user-specific decks that can be accessed across different sessions and devices.
-
-Expire the Deck After Inactivity: Implement a timeout feature where the deck resets after a certain period of inactivity.
-
-Manual Reset Option: Provide a button or option in the UI for users to manually reset or clear the deck.
-
-Each of these approaches has its considerations regarding user experience and application complexity. The choice largely depends on how you want the decks to behave in relation to user sessions and interactions.
