@@ -1,0 +1,23 @@
+/* Base Styling */
+body {
+    margin: 0;
+    padding: 0;
+    background-color: rgb(214, 163, 163); /* Default Background */
+    color: #333; /* Default Text Color */
+  }
+  
+/* Utility classes for common styling */
+.flex-center {
+display: flex;
+align-items: center;
+justify-content: center;
+}
+
+
+.main_app_content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh; /* Adjust as needed */
+}

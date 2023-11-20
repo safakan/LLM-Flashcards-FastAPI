@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <meta charset="UTF-8">
+    <title>Main Page</title>
+
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/styles/base.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/styles/components.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/styles/layouts.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/styles/flashcard.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/styles/decks_table.css') }}">    
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', path='/styles/input_container.css') }}">    
+
+    
+
+
+
+</head>
+<body>
+
+    <!-- Top Right User Info and Logout -->
+    <div class="top-right">
+        {% if user_active %}
+            <span>{{ request.cookies.get("user") }}, 7 coins</span>
+            <button id="logoutButton">Logout</button>
+        {% endif %}
+    </div>
+
+
+    <!-- LOGIN POPUP -->
+    <div id="loginPopup" class="popup">
+        <div class="popup-content">
+            <span class="close">&times;</span> <!-- Close Icon -->
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="form-row">
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="form-row">
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <div class="form-row button-row">
+                    <input type="submit" value="Login">
+                    <input type="button" id="registerButton" value="Register">
+                </div>            
+            </form>
+        </div>
+    </div>
+
+
+    <!-- Color Change Section on the Left 
+    <div class="color-change-section">
+        <label for="bg-color">Background Color:</label>
+        <input type="color" id="bg-color">
+        
+        <label for="font-color">Font Color:</label>
+        <input type="color" id="font-color">
+    </div>
+    the end of the removed color change section-->
+    
+    <div class="container">
+        <h1>FLASHCARDS</h1>
+        <h2>To learn / have fun / work / study / party / (?)</h2>
+
+        {% if user_active %}
+            <p>Hello {{ request.cookies.get("user") }},</p>
+            <p>Use AI to create custom flashcard decks tailored for your taste!</p>
+            <p> Have fun!</p>
+
+
+        {% else %}
+            <p>Hello you there!</p>
+            <p>Use AI to create custom flashcard decks tailored for your taste!</p>
+            <p> Have fun!</p>
+            <p>(but first login)</p>            
+        {% endif %}
+
+        
+        {% if not user_active %}
+            <div class="entrance_circle">
+                <button id="loginButton">Login</button>     
+            </div>
+        {% endif %}
+    </div>
+
+
+
+
+    {% if user_active %}
+        <div class = "main_app_content">
+
+            <hr class="divider">
+
+            <div class="menu_router_container">
+                <button class="menu-button">Generate Decks (active)</button>
+                <button class="menu-button">...</button>
+            </div>
+
+            <div class="input-container">
+                <input type="text" id="userInput" placeholder="Enter your text here">
+            </div>
+            
+            <hr class="divider">
+
+
+
+            <!-- Flashcard Container -->
+            <!-- OLD
+            <div class="flashcard-container" onclick="toggleFlashcard()">          
+                <div class="flashcard-inner">
+                    <div class="flashcard_front">{{ some_variable }}</div>
+                    <div class="flashcard_back">{{ some_other_variable }}</div>           
+                </div>
+            </div>
+             -->
+            <!-- Flashcard Container -->
+            <div class="flashcard-container" onclick="toggleFlashcard()">          
+                <div class="flashcard-inner">
+                    <div id="cardFront" class="flashcard_front">{{ current_card.front }}</div>
+                    <div id="cardBack" class="flashcard_back">{{ current_card.back }}</div>
+                </div>
+            </div>
+
+
+
+
+
+            <button id="nextCardButton">Next Card</button>
+
+        </div>
+    {% else %}
+        <hr class="divider">
+
+        <div class="menu_router_container">
+            <button class="menu-button">You</button>
+            <button class="menu-button">Shall</button>
+            <button class="menu-button">Pass!</button>
+        </div>
+        
+        <hr class="divider">
+
+        <div class="flashcard-container">
+            <p> Consider logging in!</p>
+        </div>        
+    {% endif %}
+
+
+
+
+
+    <!-- Include JavaScript files -->
+    <script src="{{ url_for('static', path='/js/login.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/logout.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/popup.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/list_decks.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/toggle_flashcard.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/register.js') }}"></script>
+    <script src="{{ url_for('static', path='/js/input_to_create_deck.js') }}"></script>
+    
+
+</body>
+</html>
