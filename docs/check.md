@@ -1,3 +1,25 @@
+TODO
+- next card button.
+- dynamic coloring.
+- anything with users? security? double check
+- active LLM option?
+- LLM logic
+(all already done in streamlit version...)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 - LLM logic
 
 What Happens During User Login:

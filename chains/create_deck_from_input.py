@@ -23,7 +23,9 @@ def chain_create_deck_from_input(user_input):
         "front and back values are strings.\n"
         "deck name: lowercase and use underscores.\n"        
 
-        "'front': python_list, 'back': python_list, 'deck_name': string\n"
+        "Generate a list of dictionaries with each dictionary representing a flashcard. Each dictionary should have two keys: 'front' and 'back', representing the front and back of a flashcard.\n"
+        "Format example: [{'front': 'Example Front 1', 'back': 'Example Back 1'}, ...]\n"
+
 
         "\n\n\nuser input: {user_input}"
     )

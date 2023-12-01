@@ -77,18 +77,15 @@ async def create_deck_from_input(deck_input: DeckInput):
         deck_data_str = chain_create_deck_from_input(user_prompt)
         print(f"Deck data received (string): {deck_data_str}")
 
-        # Parse the string into a Python dictionary
+        # Parse the string into a Python list of dictionaries
         deck_data = json.loads(deck_data_str)
-        print(f"Deck data parsed (dict): {deck_data}")
+        print(f"Deck data parsed: {deck_data}")
 
-        deck = ActiveDeck()
-        deck.load_deck(deck_data)
-        print("Deck loaded.")
+        # deck = ActiveDeck()
+        # deck.load_deck(deck_data)
+        # print("Deck loaded.")
 
-        # deck.update_active_card()
-        # print("Active card updated!")
-
-        return {"message": "Deck created successfully", "first_card": deck.get_current_card()}
+        return {"message": "Deck created successfully", "deck": deck_data}
 
     except Exception as e:
         print(f"Error: {e}")
