@@ -77,6 +77,11 @@ async def create_deck_from_input(deck_input: DeckInput):
         deck_data_str = chain_create_deck_from_input(user_prompt)
         print(f"Deck data received (string): {deck_data_str}")
 
+        # Replace single quotes with double quotes to make it a valid JSON format
+        deck_data_str = deck_data_str.replace("'", '"')
+        print(f"Deck data string processed to be a JSON.")
+
+
         # Parse the string into a Python list of dictionaries
         deck_data = json.loads(deck_data_str)
         print(f"Deck data parsed: {deck_data}")
