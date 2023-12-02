@@ -9,6 +9,20 @@ dotenv.load_dotenv()
 
 app = FastAPI()
 
+from fastapi.middleware.cors import CORSMiddleware
+origins = [
+    "https://*.safakan.com"  # Allows all subdomains of safakan.com
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+
 @app.on_event("startup")
 async def startup():
     Base.metadata.create_all(bind=engine)
