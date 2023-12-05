@@ -11,7 +11,7 @@ app = FastAPI()
 
 from fastapi.middleware.cors import CORSMiddleware
 origins = [
-    "https://*.safakan.com"  # Allows all subdomains of safakan.com
+    "https://cards.safakan.com"  # Allow
 ]
 
 app.add_middleware(
