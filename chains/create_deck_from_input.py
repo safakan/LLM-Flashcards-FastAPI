@@ -17,14 +17,17 @@ def chain_create_deck_from_input(user_input):
         "Even then try to come up to a point and generate a flashcard deck data.\n"
 
 
+        "input format:\n"
+        "A string describing the requested deck.\n"
 
-        "format:\n"
+        "output format:\n"
         "only return a json object to create the dataframe mentioned above.\n"
         "front and back values are strings.\n"
         "deck name: lowercase and use underscores.\n"        
 
-        "Generate a list of dictionaries with each dictionary representing a flashcard. Each dictionary should have two keys: 'front' and 'back', representing the front and back of a flashcard.\n"
-        "Format example: [{'front': 'Example Front 1', 'back': 'Example Back 1'}, ...]\n"
+        "Generate a list of dictionaries with each dictionary representing a flashcard.\n"
+        "Each output should be a dictionary and  should have two keys: 'front' and 'back', representing the front and back of a flashcard.\n"
+        "Output Format example: [{'front': 'Example Front 1', 'back': 'Example Back 1'}, ...]\n"
 
 
         "\n\n\nuser input: {user_input}"
@@ -38,3 +41,14 @@ def chain_create_deck_from_input(user_input):
     response = chain.run({'user_input': user_input})
 
     return response
+
+
+if __name__ == "__main__":
+    # env
+    from dotenv import load_dotenv
+    import os
+    load_dotenv()
+
+    testo = chain_create_deck_from_input("simple language learning english to turkish deck.")
+    print(testo)
+
